@@ -496,6 +496,7 @@ type
 
     function Remove(StartIndex, Length: SizeInt): TJclStringBuilder;
     function EnsureCapacity(Capacity: SizeInt): SizeInt;
+    procedure Clear;
 
     { IToString }
     function ToString: string; {$IFDEF RTL200_UP} override; {$ENDIF RTL200_UP}
@@ -4243,6 +4244,11 @@ constructor TJclStringBuilder.Create(const Value: string; Capacity: SizeInt);
 begin
   Create(Capacity);
   Append(Value);
+end;
+
+procedure TJclStringBuilder.Clear;
+begin
+  Length := 0;
 end;
 
 constructor TJclStringBuilder.Create(const Value: string; StartIndex,
