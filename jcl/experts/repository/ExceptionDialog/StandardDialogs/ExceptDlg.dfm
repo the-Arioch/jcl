@@ -1,16 +1,15 @@
 object ExceptionDialog: TExceptionDialog
   Left = 310
   Top = 255
-  AutoScroll = False
   BorderIcons = [biSystemMenu]
   Caption = 'ExceptionDialog'
-  ClientHeight = 283
-  ClientWidth = 483
+  ClientHeight = 348
+  ClientWidth = 594
   Color = clBtnFace
-  Constraints.MinWidth = 200
+  Constraints.MinWidth = 246
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
+  Font.Height = -14
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   KeyPreview = True
@@ -23,34 +22,48 @@ object ExceptionDialog: TExceptionDialog
   OnPaint = FormPaint
   OnResize = FormResize
   OnShow = FormShow
-  PixelsPerInch = 96
-  TextHeight = 13
+  DesignSize = (
+    594
+    348)
+  PixelsPerInch = 120
+  TextHeight = 16
   object BevelDetails: TBevel
-    Left = 3
-    Top = 119
-    Width = 473
-    Height = 9
+    Left = 4
+    Top = 146
+    Width = 582
+    Height = 12
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     Anchors = [akLeft, akTop, akRight]
     Shape = bsTopLine
   end
-
   object SaveBtn: TButton
-    Left = 403
-    Top = 60
-    Width = 75
-    Height = 25
+    Left = 496
+    Top = 74
+    Width = 92
+    Height = 31
     Hint = 'Save bug report'
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     Anchors = [akTop, akRight]
     Caption = '&Save'
     TabOrder = 0
     OnClick = SaveBtnClick
   end
   object TextMemo: TMemo
-    Left = 56
-    Top = 8
-    Width = 332
-    Height = 105
+    Left = 69
+    Top = 10
+    Width = 409
+    Height = 129
     Hint = 'Use Ctrl+C to copy the report to the clipboard'
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     Anchors = [akLeft, akTop, akRight]
     BorderStyle = bsNone
     Ctl3D = True
@@ -61,10 +74,14 @@ object ExceptionDialog: TExceptionDialog
     WantReturns = False
   end
   object OkBtn: TButton
-    Left = 403
-    Top = 4
-    Width = 75
-    Height = 25
+    Left = 496
+    Top = 5
+    Width = 92
+    Height = 31
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     Anchors = [akTop, akRight]
     Caption = '&OK'
     Default = True
@@ -72,11 +89,15 @@ object ExceptionDialog: TExceptionDialog
     TabOrder = 2
   end
   object DetailsBtn: TButton
-    Left = 403
-    Top = 88
-    Width = 75
-    Height = 25
+    Left = 496
+    Top = 108
+    Width = 92
+    Height = 31
     Hint = 'Show or hide additional information|'
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     Anchors = [akTop, akRight]
     Caption = '&Details'
     Enabled = False
@@ -84,14 +105,18 @@ object ExceptionDialog: TExceptionDialog
     OnClick = DetailsBtnClick
   end
   object DetailsMemo: TMemo
-    Left = 4
-    Top = 129
-    Width = 472
-    Height = 147
+    Left = 5
+    Top = 159
+    Width = 581
+    Height = 181
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     Anchors = [akLeft, akTop, akRight, akBottom]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
+    Font.Height = -15
     Font.Name = 'Courier New'
     Font.Style = []
     ParentColor = True

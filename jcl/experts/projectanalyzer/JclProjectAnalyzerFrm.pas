@@ -151,7 +151,7 @@ implementation
 {$R *.dfm}
 
 uses
-  JclLogic, JclOtaResources, JclPeImage, JclStrings,
+  JclLogic, JclOtaResources, JclPeImage, JclStrings, JclSysUtils,
   JclOtaConsts;
 
 procedure JvListViewSortClick(Column: TListColumn; AscendingSortImage: Integer;
@@ -188,7 +188,9 @@ var
   begin
     I := 1;
     while I <= Length(S) do
-      if not CharIsNumberChar(S[I]) then
+      if (S[I] = JclFormatSettings.DecimalSeparator) and (JclFormatSettings.DecimalSeparator <> #0) then
+        SetLength(S, I - 1) // Integers should be truncated at decimal point
+      else if not CharIsDigit(S[I]) then
         Delete(S, I, 1)
       else
         Inc(I);
