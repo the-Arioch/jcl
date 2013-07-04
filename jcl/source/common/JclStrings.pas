@@ -3009,12 +3009,13 @@ begin
   Result := CharIsDigit(C) or (C = '+') or (C = '-')
          or ((C <> #0) and (C = JclFormatSettings.DecimalSeparator))
          or ((C <> #0) and (C = JclFormatSettings.ThousandSeparator));
-   // #0 is a special value to 'disable' xxxxSeparator, semantically similar to empty string
+  // #0 is a special value to 'disable' xxxxSeparator, semantically similar to empty string
 end;
 
 function CharIsNumber(const C: Char): Boolean;
 begin
-  Result := CharIsDigit(C) or (C = JclFormatSettings.DecimalSeparator);
+  Result := CharIsDigit(C) or ((C <> #0) and (C = JclFormatSettings.DecimalSeparator));
+  // #0 is a special value to 'disable' xxxxSeparator, semantically similar to empty string
 end;
 
 function CharIsPrintable(const C: Char): Boolean;
