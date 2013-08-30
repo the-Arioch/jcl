@@ -440,7 +440,7 @@ type
   // The TStringBuilder class is a Delphi implementation of the .NET
   // System.Text.StringBuilder.
   // It is zero based and the method that allow an TObject (Append, Insert,
-  // AppendFormat) are limited to IToString implementors or newer Delphi RTL.
+  // AppendFormat) are limited to IToString implementors or Delphi 2009+ RTL.
   // This class is not threadsafe. Any instance of TStringBuilder should not
   // be used in different threads at the same time.
   TJclStringBuilder = class(TInterfacedObject, IToString)
@@ -4118,14 +4118,15 @@ var
           Dec(TInterfacedObjectAccess(V.VObject).FRefCount);
         end
         else
-        if InheritsFrom(V.VObject.ClassType, 'TComponent') and V.VObject.GetInterface(IToString, Intf) then
+        if ((V.VObject is TComponent) or (V.VObject is TInterfacedPersistent)) and V.VObject.GetInterface(IToString, Intf) then
           Result := Intf.ToString
+        {$IFDEF RTL200_UP}
         else
-{$IFDEF RTL200_UP}
           Result := V.VObject.ToString;
-{$Else}
-          raise ArgumentNullException.CreateResFmt(V.VObject.ClassName + ': ' + @RsDotNetFormatArgumentNotSupported, [Index]);
-{$EndIf}
+        {$ELSE}
+        else
+          raise ArgumentNullException.CreateResFmt(@RsDotNetFormatObjectArgumentNotSupported, [V.VObject.ClassName, Index]);
+        {$ENDIF RTL200_UP}
       vtClass:
         Result := V.VClass.ClassName;
       vtWideChar:
